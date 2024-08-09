@@ -4,7 +4,6 @@
 
     ```bash
     git clone https://github.com/JvAlmeida-SI/tp-po-otimizacao.git
-    cd OtimizacaoSistema
     ```
 
 2. Crie um ambiente virtual para o projeto:
@@ -50,6 +49,7 @@
 3. Inicie o servidor de desenvolvimento:
 
     ```bash
+    cd OtimizacaoSistema
     python manage.py runserver
     ```
 
