@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Bug</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="D:/Documentos/Desktop/FACULDADE/5º Período/Pesquisa Operacional/TrabalhoPratico/EntregaFinalSistema/tp-pesquisa-operacional/OtimizacaoSistema/static/css/styles.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="container text-center" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="./">Cadastro de Produtos<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./produtos">Produtos</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container text-center">
+        <h1>Sugestão de Compra</h1>
+        <p>Moletons: <span id="x1"></span></p>
+        <p>Camisas oversized: <span id="x2"></span></p>
+        <p>Camisas comuns: <span id="x3"></span></p>
+        <p>Lucro máximo: R$<span id="profit"></span></p>
+        
+        <script>
+            // Fetch the results from the server
+            fetch('calcSolver')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('x1').textContent = data.x1.toFixed(0);
+                    document.getElementById('x2').textContent = data.x2.toFixed(0);
+                    document.getElementById('x3').textContent = data.x3.toFixed(0);
+                    document.getElementById('profit').textContent = data.profit.toFixed(2);
+                })
+                .catch(error => console.error('Error fetching results:', error));
+        </script>
+    </div>
+
+    <hr>
+    
+    <div class="container text-center">
+        <h1>Cadastrar Produto</h1>
+        <form method="post" class="mt-4">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
